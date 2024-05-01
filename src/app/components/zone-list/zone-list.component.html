@@ -1,0 +1,8 @@
+<h2>Zones</h2>
+<button (click)="reloadZones()">Reload Zones</button>
+
+<ul>
+  <li *ngFor="let zone of zones">
+    {{ zone.numeroZona }} - {{ zone.descripcion }}
+  </li>
+</ul>
