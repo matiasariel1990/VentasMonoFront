@@ -1,0 +1,109 @@
+
+<div class="product-list-container">
+    <h1 class="center">Productos</h1>
+    
+    <!-- Botón para agregar un nuevo producto -->
+    <button class="add-button"(click)="agregar()">Nuevo Producto</button>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    
+    <div class ="main-view">
+         <!-- Tabla para mostrar los productos -->
+        <div class="product-list">
+            <h2>Lista de Productos</h2>
+            <h3>Filtros</h3>
+            <div class="filtro-div">
+                
+                <div class="filtro-campo">
+                    <p>Codigo: </p>
+                    <input class="input-filter" type="text" [(ngModel)]="filtro.id">
+                </div>
+                <div class="filtro-campo">
+                    <p>Description: </p>
+                    <input class="input-filter filter-text" type="text" [(ngModel)]="filtro.description">
+                </div>
+                <div class="filtro-campo">
+                    <button class="edit-button">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </button>
+                </div>
+            </div>
+            <div *ngFor="let product of products" class="product-item">
+            <div>{{ product.id }}</div>
+            <div class="product-description">{{ product.description }}</div>
+            <div>$ {{ product.price }}</div>
+            <ion-icon  class="edit-button" name="create-outline" (click)="openEditDialog(product)"></ion-icon>
+            <ion-icon class="delete-button" name="trash-outline"></ion-icon>
+            </div>
+            <div class="pagination">
+                <button>
+                    <ion-icon name="chevron-back-outline"></ion-icon>
+                </button>
+                
+                <button *ngFor="let page of pages" [class.active]="page === currentPage" (click)="goToPage(page)">
+                  {{ page }}
+                </button>
+
+                <button>
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </button>
+                
+            </div>
+        </div>
+
+        <div *ngIf="edit">
+            <h2>Editar Producto</h2>
+            <div class="list-datos">
+                <div class="margin-button">
+                    <p>Codigo: {{ productSelected.id }}</p>
+                </div>
+                <div class="margin-button">
+                    <p>Description</p>
+                    <input type="text" [(ngModel)]="productSelected.description">
+                </div>
+                <div class="margin-button">
+                    <p>Precio</p>
+                    <input type="number" [(ngModel)]="productSelected.price">
+                </div>
+                <div class="margin-button">
+                    <div class="button-div">
+                        <button class="add-button" (click)="guardar()">Guardar</button>
+                        <button class="delete-button" (click)="cancelar()">Cancelar</button>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+
+        <div *ngIf="nuevo">
+            <h2>Nuevo Producto</h2>
+            <p>Buscar por</p>
+            
+            <div class="list-datos">
+                <div class="margin-button">
+                    <p>Codigo:</p>
+                    <input type="text" [(ngModel)]="productSelected.id">
+                </div>
+                <div class="margin-button">
+                    <p>Description</p>
+                    <input type="text" [(ngModel)]="productSelected.description">
+                </div>
+                <div class="margin-button">
+                    <p>Precio</p>
+                    <input type="number" [(ngModel)]="productSelected.price">
+                </div>
+                <div class="margin-button">
+                    <div class="button-div">
+                        <button class="add-button" (click)="guardarNuevo()">Agregar</button>
+                        <button class="delete-button" (click)="cancelar()">Cancelar</button>
+                    </div>
+                </div>
+                
+            </div>
+    
+            
+        </div>
+
+    </div>
+  </div>

@@ -6,15 +6,43 @@ import { ZoneListComponent } from './components/zone-list/zone-list.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { RouterModule, Routes } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+
+
+import { FormsModule } from '@angular/forms';
+import { ProductComponent } from './components/product/product/product.component';
+import { ProductListComponent } from './components/product/product-list/product-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { MatDialogModule } from '@angular/material/dialog';
+import { IonicModule } from '@ionic/angular';
+import { NewVentaFormComponent } from './components/ventas/new-venta-form/new-venta-form.component';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
+    ZoneListComponent,
+    ProductComponent,
+    ProductListComponent,
+    NewVentaFormComponent,
     ZoneListComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    IonicModule.forRoot({}),
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-center',
+      preventDuplicates: true,
+    }
+  ) 
   ],
+  exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,60 @@
+
+<div class="div1vemtaForm">
+  <h1>Nueva Venta</h1>
+  <div class="sub-container">
+    <div class="div1vendedor">
+      <p class="info-box">Cliente</p>
+    <select>
+      <option *ngFor="let client of clients" [value]="client">
+        {{client.codigo}} - {{ client.nombre }}</option>
+    </select>
+    </div>
+    <div class="div1vendedor">
+      <p class="info-box">Vendedor</p>
+      <select ngModel="selectedVendor" (change)="onVendorChange()">
+        <option *ngFor="let vendor of vendedores" [value]="vendor.id">
+          {{ vendor.nombre }} {{ vendor.apellido }}</option>
+      </select>
+    </div>
+    <div class="center">
+      <button class="add-button" >
+        Agregar Producto 
+        <ion-icon name="cart-outline"></ion-icon>
+      </button>
+    </div>
+  </div>
+  
+  <div class="generic-list">
+    <p class="title-lista">Lista de Productos</p>
+    <div class="lista">
+      <div class="generic-item generic-head-item">
+        <div class="generic-id">Codigo</div>
+        <div class="generic-description">Descripcion</div>
+        <div class="generic-price">Monto Parcial</div>
+        <div class="generic-cant-h">Cantidad</div>
+      </div>
+      <div *ngFor="let product of products" class="generic-item">
+        <div class="generic-id">{{ product.id }}</div>
+        <div class="generic-description">{{ product.description }}</div>
+        <div class="generic-price">$ {{ product.price }}</div>
+        <input class="generic-cant" type="number" [(ngModel)]="product.cantidad">
+        <ion-icon class="delete-button trash-item" name="trash-outline"></ion-icon>
+      </div>
+    </div>
+    
+  </div>
+  <div *ngIf="false" class="total">
+    <p>Precio Total</p> <p>{{totalVenta}}</p>
+  </div>
+  <div class="div">
+    <button class="add-button"  (click)="generarCuotas()">
+      Generar Cuotas
+    </button>
+    <input class="generic-cant" type="number" [(ngModel)]="cantidadCuotas">
+    <!--div *ngFor="let cuota of cuotas" class="cuota-item">
+      <div>{{ cuota.id }}</div>
+      <div class="product-description">{{ cuota.description }}</div>
+      <div>$ {{ cuota.price }}</div>
+    </div-->
+  </div>
+</div>
