@@ -1,5 +1,79 @@
 
 <!-- Modal de edición -->
+<div class="general-view">
+
+
+<div class="contedor-principal-card card--elevated">
+  <div class="head-section">
+      <h3 class="list-title">Zonas</h3>
+  </div>
+
+  <div class="filter-search">
+    <input class="search_input cod-max" placeholder="Numero Zona" type="text" [(ngModel)]="zonaFiltro.numeroZona">
+    <input class="search_input" placeholder="Descripcion" type="text" [(ngModel)]="zonaFiltro.descripcion">
+    <button>
+        <ion-icon class="search_icon" name="search-outline"></ion-icon>
+    </button>
+  </div>
+
+  <div *ngFor="let zone of zones" class="item-generic" (click)="viewDeails(zone)">
+      <div class="product-item-description">
+          <div class="item-generic-description">{{ zone.descripcion }}</div>
+          <div class="item-generic-description-code">Codigo: {{  zone.numeroZona }}</div>
+      </div>
+  </div>
+
+  <div class="pagination">
+    <button>
+        <ion-icon name="chevron-back-outline"></ion-icon>
+    </button>
+    
+    <button *ngFor="let page of pages" [class.active]="page === pageZone.currentPage" (click)="goToPage(page)">
+      {{ page }}
+    </button>
+
+    <button>
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+    </button>
+      
+  </div>
+
+</div>
+
+<div class="second-view">
+
+  <div class="contedor-principal-card  card--elevated">
+    <div class="head-section">
+        <h3 class="list-title">Nueva Zona</h3>
+    </div>
+    <div class="product-detalle-fila">
+      <span>Numero zona:</span>
+      <input class="clasic_input" type="number" [(ngModel)]="newZone.numeroZona">
+    </div>
+    <div class="product-detalle-column">
+            <span>Descripcion</span>
+            <input class="clasic_input max-width" type="text" [(ngModel)]="newZone.descripcion">
+    </div>
+    
+    <div class="product-detalle-fila button-div">
+        
+        <button class="special_button button-div-child" (click)="crearZona()">Guardar</button>
+        <button class="special_button button-div-child">Cancelar</button>
+        
+    </div>
+        
+  </div>
+
+</div>
+
+<div class="div">
+  <span>Agregar o editar:</span>
+  <div class="filter-search">
+    <input class="search_input cod-max" placeholder="Numero Zona" type="text" [(ngModel)]="newZone.numeroZona">
+    <input class="search_input" placeholder="Descripcion" type="text" [(ngModel)]="newZone.descripcion">
+  </div>
+</div>
+<!--
 <section>
   <div class="sub-title"><h4>Agregar o editar zona:</h4>
     <div class="agregar-zona-container">
@@ -54,20 +128,7 @@
       </div>
     </div>
     
-    <div class="pagination">
-      <button>
-          <ion-icon name="chevron-back-outline"></ion-icon>
-      </button>
-      
-      <button *ngFor="let page of pages" [class.active]="page === pageZone.currentPage" (click)="goToPage(page)">
-        {{ page }}
-      </button>
-
-      <button>
-          <ion-icon name="chevron-forward-outline"></ion-icon>
-      </button>
-      
-  </div>
+    
 </div>
 
 <section>
@@ -95,7 +156,7 @@
     
   </div>
 </section>
-
+-->
 
 
 

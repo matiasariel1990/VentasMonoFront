@@ -1,14 +1,9 @@
 
-<div class="product-list-container">
-    
-    
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+   
     
     <div class ="general-view">
          <!-- Tabla para mostrar los productos -->
-        <div class="product-list card--elevated">
+        <div class="contedor-principal-card card--elevated">
             <div class="head-section">
                 <h3 class="list-title">Productos</h3>
                 <button class="special_button"(click)="agregar()">Nuevo Producto</button>
@@ -49,7 +44,7 @@
             </div>
         </div>
         <div  class="second-view">
-            <div class="product-list card--elevated" *ngIf="edit">
+            <div class="contedor-principal-card  card--elevated" *ngIf="edit">
                 <div class="head-section">
                     <h3 class="list-title">Editar Producto</h3>
                     <span>Cod: {{ productSelected.id }}</span>
@@ -71,7 +66,7 @@
                     
             </div>
 
-            <div class="product-list card--elevated" *ngIf="nuevo">
+            <div class="contedor-principal-card  card--elevated" *ngIf="nuevo">
                 <div class="head-section">
                     <h3 class="list-title">Nuevo Producto</h3>
                 </div>
@@ -102,4 +97,3 @@
         
 
     </div>
-  </div>
