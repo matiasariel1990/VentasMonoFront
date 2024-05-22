@@ -10,6 +10,7 @@ import { ProductService } from 'src/app/services/product.service';
 
 export class ProductListComponent {
 
+
   products: Product[] = [];
 
   pages : number[] = [1,2,3,4,5,6,7,8,9,10];
@@ -17,17 +18,17 @@ export class ProductListComponent {
   currentPage : number = 1 ;
 
   filtro : Product  = {
-    id: 0,
-    description: '',
-    price: 0,
+    id: 976,
+    description: 'Juego de Sabanas para probar',
+    price: 500000,
     cantidad: 0
   };
 
   productSelected : Product = {
-    id: 0,
-    description: '',
-    price: 0,
-    cantidad : 0
+    id: 976,
+    description: 'Juego de Sabanas para probar',
+    price: 500000,
+    cantidad: 0
   };
 
   edit: boolean = false;
@@ -39,6 +40,8 @@ export class ProductListComponent {
     this.productService.getProducts().subscribe(products => {
       this.products = products;
     });
+
+    this.products.push(this.productSelected);
     this.productSelected = this.products[0];
   }
 
@@ -68,6 +71,12 @@ export class ProductListComponent {
 
   goToPage(page: number){
 
+  }
+
+  detalle(product: Product): void {
+    this.edit = true;
+    this.nuevo = false;
+    this.productSelected = product;
   }
 
 }

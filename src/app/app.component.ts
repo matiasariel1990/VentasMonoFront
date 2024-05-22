@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'VentasFront';
+
+  menuDeshabilitado = true;
+
+  habilitarDeshabilitarMenu():void{
+    this.menuDeshabilitado = !this.menuDeshabilitado;
+  }
+
+  cerrarMenu():void{
+    this.menuDeshabilitado = true;
+  }
 }

@@ -1,75 +1,76 @@
 
 <!-- Modal de edición -->
-<div class="main-page-container" >
-  <h1 class="center">Zonas</h1>
-
-<div class="sub-title">
-  <h4>Agregar o editar zona:</h4>
-  <div class="agregar-zona-container">
-    <p>Codigo: </p>
-    <input class="generic-cant box-min" type="text" [(ngModel)]="newZone.numeroZona">
-    <p>Description: </p>
-    <input class="box-mid" type="text" [(ngModel)]="newZone.descripcion">      
-    <button class="add-button"  (click)="crearZona()"> 
+<section>
+  <div class="sub-title"><h4>Agregar o editar zona:</h4>
+    <div class="agregar-zona-container">
+      <p>Codigo: </p>
+      <input class="generic-cant box-min" type="text" [(ngModel)]="newZone.numeroZona">
+      <p>Description: </p>
+      <input class="box-mid" type="text" [(ngModel)]="newZone.descripcion">      
+      <button class="add-button"  (click)="crearZona()"> 
       <ion-icon name="save-outline"></ion-icon> Guardar</button>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="filtro-div">
+    <div class="filtro-campo">
+      <p>Buscar por </p>
+    </div>
+    
+    <div class="filtro-campo">
+        <p>Codigo: </p>
+        <input class="input-filter" type="text" [(ngModel)]="zonaFiltro.numeroZona">
+    </div>
+    <div class="filtro-campo">
+        <p>Description: </p>
+        <input class="input-filter filter-text" type="text" [(ngModel)]="zonaFiltro.descripcion">
+    </div>
+    <div class="filtro-campo">
+        <button class="edit-button">
+            <ion-icon name="search-outline"></ion-icon>
+        </button>
+    </div>
+  </div>
+</section>
+
+<div class="list-container border card-container limit-height">
+  <div class="generic-list">        
+    
+    <div class="table-List limit-height">
+      <div class="generic-item generic-head-item">
+        <div class="generic-id">Numero </div>
+        <div class="generic-description">Description</div>
+      </div>
+      <div *ngFor="let zone of zones" class="generic-item">
+        <div class="generic-id">{{ zone.numeroZona }}</div>
+        <div class="zona-name">{{ zone.descripcion }}</div>
+        <ion-icon class="edit-button"  name="list-circle-outline" (click)="viewDeails(zone)"></ion-icon>
+      </div>
+    <div>
+      
+    </div>
+       
+      </div>
+    </div>
+    
+    <div class="pagination">
+      <button>
+          <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+      
+      <button *ngFor="let page of pages" [class.active]="page === pageZone.currentPage" (click)="goToPage(page)">
+        {{ page }}
+      </button>
+
+      <button>
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+      </button>
+      
   </div>
 </div>
 
-<div class="main">
-
-    <div class="list-container border card-container limit-height">
-      <div class="generic-list">        
-        <div class="filtro-div">
-          <div class="filtro-campo">
-            <p>Buscar por </p>
-          </div>
-          
-          <div class="filtro-campo">
-              <p>Codigo: </p>
-              <input class="input-filter" type="text" [(ngModel)]="zonaFiltro.numeroZona">
-          </div>
-          <div class="filtro-campo">
-              <p>Description: </p>
-              <input class="input-filter filter-text" type="text" [(ngModel)]="zonaFiltro.descripcion">
-          </div>
-          <div class="filtro-campo">
-              <button class="edit-button">
-                  <ion-icon name="search-outline"></ion-icon>
-              </button>
-          </div>
-        </div>
-        <div class="table-List limit-height">
-          <div class="generic-item generic-head-item">
-            <div class="generic-id">Numero </div>
-            <div class="generic-description">Description</div>
-          </div>
-          <div *ngFor="let zone of zones" class="generic-item">
-            <div class="generic-id">{{ zone.numeroZona }}</div>
-            <div class="zona-name">{{ zone.descripcion }}</div>
-            <ion-icon class="edit-button"  name="list-circle-outline" (click)="viewDeails(zone)"></ion-icon>
-          </div>
-        <div>
-          
-        </div>
-           
-          </div>
-        </div>
-        
-        <div class="pagination">
-          <button>
-              <ion-icon name="chevron-back-outline"></ion-icon>
-          </button>
-          
-          <button *ngFor="let page of pages" [class.active]="page === pageZone.currentPage" (click)="goToPage(page)">
-            {{ page }}
-          </button>
-  
-          <button>
-              <ion-icon name="chevron-forward-outline"></ion-icon>
-          </button>
-          
-      </div>
-    </div>  
+<section>
   <div class="second-view border card-container">
     <h2>Zona: {{ zonaSelected.descripcion}}</h2>
     <div class="detalle-item"><ion-icon name="person-outline" class="center-h"></ion-icon> 
@@ -93,9 +94,10 @@
     
     
   </div>
-</div>
+</section>
 
-</div>
+
+
 
 
 

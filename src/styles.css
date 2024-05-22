@@ -1,7 +1,144 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0;  }
+
+
+
+.mi-header{
+  height: 3.75em;
+  left: unset;
+  padding-left: 2em;
+  padding-right: 2em;
+  right: 0;
+}
+
+.ui-header {
+  -webkit-font-smoothing: antialiased;
+  align-items: center;
+  background: #009ee3;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .32);
+  box-sizing: border-box;
+  color: #fff;
+  display: flex;
+  font-family: Proxima Nova, -apple-system, Roboto, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  height: 3.75em;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 60;
+}
+
+.ui-header__title {
+  flex-grow: 2;
+  font-size: 1.125em;
+  font-weight: 600;
+  line-height: 3.75em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ui-header__action-left>* {
+  margin-left: -1em;
+  padding: 0 1em;
+}
+.mp-header__header-navicon {
+  align-items: center;
+  background-color: unset;
+  border: 0;
+  display: flex;
+  font-family: Proxima Nova, -apple-system, Roboto, Arial, sans-serif;
+  font-size: 16px;
+  height: 3.75em;
+}
+
+.ui-header__children {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  gap: 16px;
+  height: 100%;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+
+
+.mp-header__header-navicon {
+  align-items: center;
+  background-color: unset;
+  border: 0;
+  display: flex;
+  font-family: Proxima Nova, -apple-system, Roboto, Arial, sans-serif;
+  font-size: 16px;
+  height: 3.75em;
+}
+
+.ui-header__action-left>* {
+  margin-left: -1em;
+  padding: 0 1em;
+}
+
+
+/* Body */
+@media (width >= 768px) {
+    .mp-main__content--narrow {
+        margin: 0 auto;
+        max-width: 65.25em;
+        padding: 1.5em 2em;
+    }
+}
+@media (width >= 768px) {
+    .mp-main__content {
+        width: 100%;
+    }
+}
+
+* :after, :before {
+    box-sizing: border-box;
+}
+
+section {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+div {
+  display: block;
+  unicode-bidi: isolate;
+}
+
+/*
+Main frame home
+*/
+
+@media (min-device-width: 1280px) {
+  .mpfc-home {
+      grid-gap: 16px 32px;
+      grid-template-columns: 23.125em 1fr;
+  }
+}
+
+@media (min-device-width: 1024px) {
+  .mpfc-home {
+      grid-gap: 16px;
+      grid-template-columns: 20.625em 1fr;
+  }
+}
+
+.mpfc-home {
+  display: grid;
+  grid-gap: 24px;
+  grid-template-areas:
+      "top top"
+      "center center"
+      "left right"
+      "bottom bottom";
+}
 
 /*Botones */
 
@@ -390,6 +527,10 @@ button.toast-close-button {
   }
 }
 
+.card--elevated {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .1);
+}
+
 .center{
   align-self: center;
 }
@@ -420,6 +561,3 @@ button.toast-close-button {
   max-height: 100%;
 }
 
-.table-List{
-  overflow: auto;
-}

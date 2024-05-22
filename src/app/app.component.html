@@ -6,16 +6,24 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
+<!-- 
+      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+ -->
 <style>
   :host {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 14px;
+    font-family: Proxima Nova, -apple-system, Roboto, Arial, sans-serif; 
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+    background-color: #62676b;
     color: #333;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+
+  
 
   h1,
   h2,
@@ -23,11 +31,15 @@
   h4,
   h5,
   h6 {
-    margin: 8px 0;
+    margin: 0;
   }
 
   p {
     margin: 0;
+  }
+
+  .body-background{
+    background: #ededed;
   }
 
   .spacer {
@@ -47,33 +59,6 @@
     font-weight: 600;
   }
 
-  .toolbar img {
-    margin: 0 16px;
-  }
-
-  .toolbar #twitter-logo {
-    height: 40px;
-    margin: 0 8px;
-  }
-
-  .toolbar #youtube-logo {
-    height: 40px;
-    margin: 0 16px;
-  }
-
-  .toolbar #twitter-logo:hover,
-  .toolbar #youtube-logo:hover {
-    opacity: 0.8;
-  }
-
-  .content {
-    display: flex;
-    /*margin: 82px auto 32px;*/
-    padding: 0 16px;
-    max-width: 960px;
-    flex-direction: column;
-    align-items: center;
-  }
 
   svg.material-icons {
     height: 24px;
@@ -211,6 +196,11 @@
 
   /* Responsive Styles */
   @media screen and (max-width: 767px) {
+
+    :host {
+    font-size: 10px;
+    }
+
     .card-container > *:not(.circle-link) ,
     .terminal {
       width: 100%;
@@ -232,27 +222,52 @@
   }
 
   @media screen and (max-width: 575px) {
+    :host {
+    font-size: 10px;
+  }
     svg#rocket-smoke {
       display: none;
       visibility: hidden;
     }
   }
 
+  .mp-nav {
+    bottom: 0;
+    height: 100%;
+    left: -16em;
+    min-height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    user-select: none;
+    width: 16em;
+    z-index: 80;
+  }
+
   .sidebar {
+      background: #eee;
+      overflow: auto;
+      padding-bottom: 1em;
+      padding-top: 1em;
+      border-right: 1px solid rgba(0, 0, 0, .1);
       height: 100%;
-      width: 250px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background-color: #2980b9; /* Azul cálido */
-      padding-top: 20px;
+      width: 100%;
     }
 
     .sidebar a {
-      padding: 10px;
+      box-shadow: inset .25em 0 0 transparent;
+      color: #333;
+      cursor: pointer;
+      max-height: 2.875em;
+      padding: 16px 0 16px 24px;
+      position: relative;
       text-decoration: none;
-      color: white;
-      display: block;
+      transition: background .12s ease-out, box-shadow .12s ease-out, color .12s ease-out;
+    }
+
+    .side__link, .mp-s-link {
+    align-items: center;
+    display: flex;
     }
 
     .sidebar a:hover {
@@ -261,25 +276,61 @@
 
     /* Estilos para el contenido de la página */
     .content {
-      margin-left: 250px; /* Ajustar según el ancho del menú izquierdo */
+      display: flex;
+      padding: 0 16px;
+      max-width: 960px;
+      flex-direction: column;
+      align-items: center;/* Ajustar según el ancho del menú izquierdo */
       padding: 20px;
       height: 100vh ;
     } 
 
+    .margen-menuHabilitado{
+      margin-left: 200px;
+    }
+
 </style>
-<div>
+<header class="ui-header mi-header" role="banner">
+  <span class="ui-header__action-left">
+  <button (click)="habilitarDeshabilitarMenu()" 
+      class="mp-header__header-navicon" for="drawer-trigger" 
+      aria-expanded="false" aria-label="drawer-trigger" type="button">
+ 
+    <ion-icon name="list-outline"></ion-icon>
+
+  </button>    
+  <span class="ui-navicon"></span>
+</span>
+<h1 class="ui-header__title">Inicio</h1>
+<div class="ui-header__children">
+  <div class="mp-notifications ui-notification-trigger">
+  <button class="option-notifications notifications-widget ui-notification__button modeless-box-trigger" type="button" aria-label="Tienes 0 notificaciones" aria-expanded="false"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.25 13.0365V17.9971H7.52768C7.8851 20.1443 9.75139 21.7812 12 21.7812C14.2486 21.7812 16.1149 20.1443 16.4723 17.9971H21.75V13.0365L18.75 11.5365V9C18.75 5.27208 15.7279 2.25 12 2.25C8.27208 2.25 5.25 5.27208 5.25 9V11.5365L2.25 13.0365ZM20.25 16.4971V13.9635L17.25 12.4635V9C17.25 6.10051 14.8995 3.75 12 3.75C9.1005 3.75 6.75 6.10051 6.75 9V12.4635L3.75 13.9635V16.4971H20.25ZM9.05934 17.9971H14.9407C14.6068 19.3101 13.4168 20.2812 12 20.2812C10.5832 20.2812 9.39319 19.3101 9.05934 17.9971Z" fill="#fff"></path></svg><span class="ml-count" style="display: none">0</span></button></div><a href="/ayuda#from-section=header" id="help-button" class="andes-button andes-button--medium andes-button--loud mp-help-button" type="button" aria-label="Ayuda"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M10.965 13.068C10.965 11.8644 11.8256 11.2524 12.6342 10.6774L12.639 10.674L12.6797 10.6455C13.3839 10.1529 14.025 9.70438 14.025 8.892C14.025 8.1 13.413 7.416 12.117 7.416C10.893 7.416 10.065 7.956 9.435 8.784L8.391 7.632C9.273 6.498 10.623 5.814 12.297 5.814C14.529 5.814 15.879 7.038 15.879 8.622C15.879 10.116 14.853 10.854 13.917 11.502L13.8306 11.5646C13.1446 12.0606 12.531 12.5044 12.531 13.23C12.531 13.518 12.711 13.86 12.963 14.076L11.631 14.58C11.181 14.148 10.965 13.644 10.965 13.068Z" fill="#fff"></path>
+  <path d="M11.019 17.064C11.019 16.452 11.523 15.948 12.135 15.948C12.747 15.948 13.269 16.452 13.269 17.064C13.269 17.676 12.747 18.198 12.135 18.198C11.523 18.198 11.019 17.676 11.019 17.064Z" fill="#fff"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 23.25C18.2132 23.25 23.25 18.2132 23.25 12C23.25 5.7868 18.2132 0.75 12 0.75C5.7868 0.75 0.75 5.7868 0.75 12C0.75 18.2132 5.7868 23.25 12 23.25ZM12 21.75C6.61522 21.75 2.25 17.3848 2.25 12C2.25 6.61522 6.61522 2.25 12 2.25C17.3848 2.25 21.75 6.61522 21.75 12C21.75 17.3848 17.3848 21.75 12 21.75Z" fill="#fff"></path>
+  </svg></a></div>
+</header>
+
+<section id="root-app" class="mp-main__content mp-main__content--narrow body-background">
+
+    <aside class="mp-nav slideout-menu slideout-menu-left" 
+    [ngClass]="{ 'no-visible': menuDeshabilitado }" style="transform: translateX(256px);">
       <div class="sidebar">
-        <a href="">Inicio</a>
-        <a href="newVenta">Nueva Venta</a>
-        <a routerLink="products">Productos</a>
-        <a routerLink="customers">Clientes</a>
-        <a href="customersDetails">Vendedores</a>
-        <a href="zones">Zonas</a>
-        
-        <a href="#">Informes</a>
+
+
+        <a class="side__link" routerLink="">Inicio</a>
+        <a class="side__link" routerLink="newVenta">Nueva Venta</a>
+        <a class="side__link" routerLink="products">Productos</a>
+        <a class="side__link" href="customers" (click)="cerrarMenu()">Clientes</a>
+        <a class="side__link" routerLink="customersDetails">Vendedores</a>
+        <a class="side__link" href="zones">Zonas</a>
+        <a class="side__link" routerLink="#">Informes</a>
+        <a class="side__link" (click)="cerrarMenu()">Cerrar</a>
       </div>
 
+    </aside>
+      
       <div class="content">
         <router-outlet></router-outlet>
       </div>
-</div>
+  
+</section>
+

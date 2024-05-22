@@ -2,4 +2,60 @@
     position: relative;
 }
 
-  
+.toggle-button {
+    font-size: 1.5;
+    display: none;
+    z-index: 1;
+}
+
+
+.menuHabilitado{
+    display: block;
+    width: 0px;
+    transform: translateX(-100%);
+}
+
+.menuHabilitado{
+    display: none;
+}
+
+.toggle-button {
+    display: block;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #2980b9; /* Azul cálido */
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.toggle-button a:hover {
+    background-color: #3498db; /* Azul más claro al pasar el mouse */
+  }
+
+
+.content {
+    margin: 0 auto;
+    max-width: 65.25em;
+    padding: 1.5em 2em;
+}
+
+.no-visible{
+    display: none;
+}
+
+.slideout-menu {
+    will-change: transform;
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 767px) {
+
+    
+
+    
+}
