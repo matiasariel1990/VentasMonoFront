@@ -5,12 +5,7 @@
     flex-direction: row;
 }
 
-.second-view{
-    max-width: 35em;
-    padding: 3em;
-    padding-top: 1em;
-    align-self: center;
-}
+
 
 .agregar-zona-container{
     display: flex;

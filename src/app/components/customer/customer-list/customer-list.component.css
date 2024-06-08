@@ -1,0 +1,11 @@
+.nueva-venta-container{
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-add{
+    color: #5096ff;
+}

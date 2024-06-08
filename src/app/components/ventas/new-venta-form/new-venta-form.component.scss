@@ -1,3 +1,5 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
 .sub-container{
     display: flex;
     flex-direction: row;
@@ -7,3 +9,93 @@
 .center{
     align-self: center;
 }
+
+
+.col-codigo{
+    min-width: 5em;
+    margin-right: 5px;
+}
+
+.col-descipcion{
+    width: 15em;
+}
+
+.tab-section-right{
+    justify-content: right;
+}
+
+.col-options{
+    max-width: 3em;
+}
+
+.head-col-monto-parcial{
+    max-width: 3em;
+    margin-left: 3em;
+}
+
+.product-detalle-fila-tabla{
+    font-size: .875em ;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 16px 5px 16px;
+    border-bottom: solid;
+    justify-content:space-between;
+    background-color: #fff;
+    gap:10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .seccion-derecha{
+    flex:2;
+  }
+
+  .seccion-izquierda{
+    flex:1;
+  }
+
+  .new-venta-main-options-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: .25em .25em 0 0;
+    justify-content:space-between;
+    background-color: #fff;
+    gap:10px
+  }
+
+  .cuotas-section{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cuota-container{
+    padding: 7px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+    padding-right: 10px;
+
+  }
+  .cuota-info{
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    inline-size: 1.1;
+  }
+
+  .cuota-name{
+    font-weight: 600;
+    font-size: 1,1em;
+  }
+
+  .cuota-price{
+    font-weight: 500;
+    font-size: 1em;
+  }
+
+
+  .mat-mdc-form-field{
+    display: flex;
+  }

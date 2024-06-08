@@ -1,60 +1,115 @@
 
-<div class="div1vemtaForm">
-  <h1>Nueva Venta</h1>
-  <div class="sub-container">
-    <div class="div1vendedor">
-      <p class="info-box">Cliente</p>
-    <select>
-      <option *ngFor="let client of clients" [value]="client">
-        {{client.codigo}} - {{ client.nombre }}</option>
-    </select>
+<div class="contedor-principal-card card--elevated">
+  <div class="head-section">
+      <h3 class="list-title">Nueva Venta</h3>
+  </div>
+  <div class="product-detalle-fila">
+    <div class="new-venta-main-options-row">
+      <span>Cliente</span>
+      <select>
+        <option *ngFor="let client of clients" [value]="client">
+          {{client.codigo}} - {{ client.nombre }}</option>
+      </select>
     </div>
-    <div class="div1vendedor">
-      <p class="info-box">Vendedor</p>
-      <select ngModel="selectedVendor" (change)="onVendorChange()">
+    <div class="new-venta-main-options-row">
+      <span>Vendedor</span>
+      <select>
         <option *ngFor="let vendor of vendedores" [value]="vendor.id">
           {{ vendor.nombre }} {{ vendor.apellido }}</option>
       </select>
     </div>
-    <div class="center">
-      <button class="add-button" >
-        Agregar Producto 
-        <ion-icon name="cart-outline"></ion-icon>
-      </button>
-    </div>
-  </div>
-  
-  <div class="generic-list">
-    <p class="title-lista">Lista de Productos</p>
-    <div class="lista">
-      <div class="generic-item generic-head-item">
-        <div class="generic-id">Codigo</div>
-        <div class="generic-description">Descripcion</div>
-        <div class="generic-price">Monto Parcial</div>
-        <div class="generic-cant-h">Cantidad</div>
-      </div>
-      <div *ngFor="let product of products" class="generic-item">
-        <div class="generic-id">{{ product.id }}</div>
-        <div class="generic-description">{{ product.description }}</div>
-        <div class="generic-price">$ {{ product.price }}</div>
-        <input class="generic-cant" type="number" [(ngModel)]="product.cantidad">
-        <ion-icon class="delete-button trash-item" name="trash-outline"></ion-icon>
-      </div>
+
+    <button class="special_button"(click)="habilitarMenuProductos()">Agregar Producto</button>
+
+
+    <div class="new-venta-main-options-row">
+      <span>
+        Fecha de Venta
+      </span>
+        <mat-form-field >
+          <mat-label>Selecciona una fecha</mat-label>
+          <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" (dateChange)="onDateChange($event)">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
     </div>
     
+    
   </div>
-  <div *ngIf="false" class="total">
-    <p>Precio Total</p> <p>{{totalVenta}}</p>
+  <div class="product-detalle-fila-tabla generic-head-item">
+    <div class="seccion-derecha">
+      <span class="col-codigo">Codigo</span>
+      <span class="col-descripcion">Descipcion</span>
+    </div>
+    <div class="seccion-izquierda">
+      <span class="col-monto-parcial">Monto Parcial</span>
+      <span class="col-cantidad head-col-cantidad">Cantidad</span>
+    </div>
+      
+      
   </div>
-  <div class="div">
-    <button class="add-button"  (click)="generarCuotas()">
-      Generar Cuotas
-    </button>
-    <input class="generic-cant" type="number" [(ngModel)]="cantidadCuotas">
-    <!--div *ngFor="let cuota of cuotas" class="cuota-item">
-      <div>{{ cuota.id }}</div>
-      <div class="product-description">{{ cuota.description }}</div>
-      <div>$ {{ cuota.price }}</div>
-    </div-->
+  <div *ngFor="let product of products" class="product-detalle-fila-tabla">
+    <div class="seccion-derecha">
+      <span class="col-codigo">{{ product.id }}</span>
+      <span class="col-descripcion">{{ product.description  }}</span>
+      
+    </div>
+    
+    <div class="generic-price">$ {{ product.price }}</div>
+    <input class="generic-cant" type="number" [(ngModel)]="product.cantidad">
+    <ion-icon class="delete-button trash-item" name="trash-outline"></ion-icon>
+    
   </div>
+
+  <div class="product-detalle-fila-tabla">
+    
+    <div class="generic-price">$ </div>
+    <span class="col-descripcion">Total </span>
+  </div>
+  <div class="head-section">
+    <h3 class="list-title">Financiacion</h3>
+    
+    <div class="new-venta-main-options-row">
+      <span>Cantidad de Cuotas</span>
+      <select (change)="onCuotasChange($event)">
+        <option *ngFor="let numero of opcionCuotas" [value]="numero">
+          {{ numero }}</option>
+      </select>
+    <button class="special_button"(click)="generarCuotas()">Generar Cuotas</button>
+    </div>
+  </div>
+
+  <div class="cuotas-section" >
+  <div class="cuota-container" *ngFor="let cuota of cuotas">
+    <div class="cuota-info">
+      <span class="cuota-name">
+        Cuota {{cuota.id}}
+      </span>
+      <span class="cuota-price">
+        $ {{cuota?.monto?.toFixed(2)}}
+      </span>
+    </div>
+    <span>
+      Fecha de Vencimiento
+    </span>
+    <mat-form-field >
+        <input matInput [matDatepicker]="picker" [(ngModel)]="cuota.fechaPago" placeholder="DD/MM/YYYY" (dateChange)="onDateChangeCuota($event, cuota)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+    
+  </div>
+
+  <div class="head-section">
+    <h3 class="list-title">Aceptar financiacion y finalizar</h3>
+    
+      
+    <button class="special_button"(click)="finalizarVenta()">Finalizar Venta</button>
+    
+  </div>
+
 </div>
+
+
+

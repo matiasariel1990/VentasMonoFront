@@ -18,6 +18,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { IonicModule } from '@ionic/angular';
 import { NewVentaFormComponent } from './components/ventas/new-venta-form/new-venta-form.component';
 import { ToastrModule } from 'ngx-toastr';
+import { CustomerListComponent } from './components/customer/customer-list/customer-list.component';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,9 @@ import { ToastrModule } from 'ngx-toastr';
     ProductComponent,
     ProductListComponent,
     NewVentaFormComponent,
-    ZoneListComponent
+    ZoneListComponent,
+    CustomerListComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -39,8 +46,10 @@ import { ToastrModule } from 'ngx-toastr';
       timeOut: 10000,
       positionClass: 'toast-bottom-center',
       preventDuplicates: true,
-    }
-  ) 
+    }),
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule
   ],
   exports: [RouterModule],
   providers: [],

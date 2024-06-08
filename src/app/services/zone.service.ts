@@ -14,10 +14,39 @@ export class ZoneService {
   private baseUrl = 'https://api.mockfly.dev/mocks/853aea1c-2041-4f94-a0ad-f42901c16455/zona';
   private baseUrlLocal = 'http://localhost:8080/Zona'
 
+  zonesCache !: Observable<Zone[]> ;
+
+  cacheDisponible = false;
+
+  url = `${this.baseUrl}`;
+  httpOptions = {
+          headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+          observe: 'response' as 'body',
+          params: {}, // if you have any params to send
+          cache: true, // enable caching
+          responseType: 'json' as 'json',
+          timeout: 15000 // 30 seconds timeout
+  };
    
 
   constructor(private http: HttpClient) { }
 
+  getAllZonas() : Observable<Zone[]> {
+    if(!this.cacheDisponible){
+    return this.http.get<any>(`${this.baseUrlLocal}/NoPaginable`, this.httpOptions).pipe(
+      map(response  =>{
+        this.cacheDisponible = true;
+        return response.body; 
+      } ),
+      catchError(error => {
+        // Handle error
+        console.error('An error occurred:', error);
+        throw error;
+      })
+    );
+    }
+    return this.zonesCache;
+  }
 
   getAll(): Observable<PaginatedResponse> 
   {

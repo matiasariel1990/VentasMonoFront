@@ -7,8 +7,20 @@ import { Cliente } from '../models/cliente.model';
 export class CustomerService {
 
   private clientes: Cliente[] = [
-    { codigo: 1, nombre: 'Juan', apellido: 'Perez', dni: '12345678', zona: 1 },
-    { codigo: 2, nombre: 'María', apellido: 'González', dni: '87654321', zona: 3},
+    {
+      codigo: 1, nombre: 'Juan', apellido: 'Perez', dni: '12345678', zona: 1,
+      calle: '',
+      numeracion: '',
+      localidad: '',
+      telefono: ''
+    },
+    {
+      codigo: 2, nombre: 'María', apellido: 'González', dni: '87654321', zona: 3,
+      calle: '',
+      numeracion: '',
+      localidad: '',
+      telefono: ''
+    },
     // Agrega más clientes según sea necesario
   ];
   

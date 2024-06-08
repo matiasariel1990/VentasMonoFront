@@ -1,9 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0;  }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Evita que el body se desplace */
+}
 
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+  overflow: hidden; /* Oculta el desbordamiento para evitar el scroll del contenedor principal */
+}
+
+.content-container {
+  flex: 1;
+  max-width: 100%;
+  margin-top: 30px;
+  overflow: auto; /* Permite el scroll si el contenido se desborda */
+}
 
 .mi-header{
   height: 3.75em;
@@ -88,13 +106,14 @@ body { margin: 0;  }
 @media (width >= 768px) {
     .mp-main__content--narrow {
         margin: 0 auto;
-        max-width: 65.25em;
+        max-width: 70em;
         padding: 1.5em 2em;
     }
 }
 @media (width >= 768px) {
     .mp-main__content {
         width: 100%;
+        max-width: 70em;
     }
 }
 
@@ -119,6 +138,7 @@ Main frame home
 @media (min-device-width: 1280px) {
   .mpfc-home {
       grid-gap: 16px 32px;
+      padding-left: 16px;
       grid-template-columns: 23.125em 1fr;
   }
 }
@@ -126,12 +146,14 @@ Main frame home
 @media (min-device-width: 1024px) {
   .mpfc-home {
       grid-gap: 16px;
+      padding-left: 16px;
       grid-template-columns: 20.625em 1fr;
   }
 }
 
 .mpfc-home {
   display: grid;
+  padding-left: 24px;
   grid-gap: 24px;
   grid-template-areas:
       "top top"
@@ -258,7 +280,7 @@ Main frame home
 
   .generic-head-item{
     font-weight:700;
-    background-color: #EAEDED;
+    background-color: #919494;
   }
 
 
@@ -531,6 +553,10 @@ button.toast-close-button {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .1);
 }
 
+.scroll{
+  overflow: scroll;
+}
+
 .center{
   align-self: center;
 }
@@ -539,7 +565,6 @@ button.toast-close-button {
 .main-page-container{
   display: flex;
   flex-direction: column;
-  height: 100vh;
   
 }
 
@@ -556,10 +581,7 @@ button.toast-close-button {
   padding-bottom: 15px;
 }
 
-.limit-height{
-  
-  max-height: 100%;
-}
+
 
 
 
@@ -584,10 +606,14 @@ button.toast-close-button {
 }
 
 .second.view{
-  flex: 1 ;
-  margin-top: 30px;
+  flex: 1.5 ;
   background-color: #fff;
   border-radius: 6px;
+}
+
+.second-view{
+  max-width: 35em;
+  padding-right: 24px;
 }
   
 
@@ -631,6 +657,8 @@ button.toast-close-button {
  margin-left: 2px;
 }
 
+
+
 .search_icon{
   height: 20px;
   margin: 0 8px 0 16px;
@@ -658,11 +686,19 @@ button.toast-close-button {
    font-weight: 600;
    line-height: 1.28;
    padding-right: 5.4px;
+   margin:0;
  }
 
 
  .contedor-principal-card{
     flex: 2;
+    margin-top: 30px;
+    background-color: #fff;
+    border-radius: 6px;
+ }
+
+ .contenedor-secundario{
+    flex:1;
     margin-top: 30px;
     background-color: #fff;
     border-radius: 6px;
@@ -683,6 +719,15 @@ button.toast-close-button {
   justify-content:space-between;
   background-color: #fff;
   border-bottom: .0625em solid #eee;
+}
+
+.item-generic:hover {
+  border-left: 10px solid #5096ff;
+}
+
+.item-generic-description-code{
+  font-size: 12px;
+  color: rgba(0, 0, 0, .45);
 }
 
 .product-detalle-column{

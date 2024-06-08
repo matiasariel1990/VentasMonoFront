@@ -1,30 +1,108 @@
-<p>customer-list works!</p>
-<div class="container">
-    <h1>Lista de Clientes</h1>
-    <!--input type="text" placeholder="Buscar cliente..." [(ngModel)]="filtro"-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-    <table>
-      <thead>
-        <tr>
-          <th>Código</th>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>DNI</th>
-          <th>Zona</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let cliente of clientes | filter:filtro; let i = index">
-          <td>{{ cliente.codigo }}</td>
-          <td>{{ cliente.nombre }}</td>
-          <td>{{ cliente.apellido }}</td>
-          <td>{{ cliente.dni }}</td>
-          <td>{{ cliente.zona }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="pagination">
-      <a href="#" *ngFor="let page of paginas" [class.active]="currentPage === page" (click)="setCurrentPage(page)">{{ page }}</a>
+
+
+<div class="general-view">
+
+
+    <div class="contedor-principal-card card--elevated">
+      <div class="head-section">
+          <h3 class="list-title">Clientes</h3>
+          <button class="special_button"(click)="agregar()">Nuevo Cliente</button>
+      </div>
+    
+      <div class="filter-search">
+        <input class="search_input cod-max" placeholder="Dni" type="text" [(ngModel)]="clienteFiltro.dni">
+        <input class="search_input cod-max" placeholder="Codigo" type="text" [(ngModel)]="clienteFiltro.codigo">
+        <input class="search_input" placeholder="Nombre" type="text" [(ngModel)]="clienteFiltro.nombre">
+        <input class="search_input" placeholder="Zona" type="text" [(ngModel)]="clienteFiltro.zona">
+        <button>
+            <ion-icon class="search_icon" name="search-outline"></ion-icon>
+        </button>
+      </div>
+    
+      <div *ngFor="let cliente of clientes" class="item-generic" (click)="viewDeails(cliente)">
+          <div class="product-item-description">
+              <span class="item-generic-description">{{ cliente.apellido}}, {{cliente.nombre }}</span>
+              <span class="item-generic-description-code">{{  cliente.codigo }} - Dni: {{cliente.dni}}</span>
+          </div>
+          <div class="product-item-description">
+            <span class="item-generic-description">Zona: {{ cliente.zona}}</span>
+          </div>
+      </div>
     </div>
+      
+  <div class="second-view" *ngIf="menuHabilitado()">
+
+    <div class="contenedor-secundario card--elevated">
+      <div class="item-generic" *ngIf="editOptions" (click)="nuevaVenta()">
+        <div class="nueva-venta-container">
+          <ion-icon class="icon-add" name="add-circle-outline" size="large"></ion-icon>
+          <span>Nueva Venta</span>
+        </div>
+      </div>
+
+      <div class="head-section">
+          <h3 class="list-title"  *ngIf="newOptions">Nuevo Cliente</h3>
+          <h3 class="list-title"  *ngIf="editOptions">Editar Cliente</h3>
+      </div>
+      
+      <div class="product-detalle-column">
+        <span>Nombre</span>
+        <input class="clasic_input max-width" type="text" *ngIf="newOptions" [(ngModel)]="nuevoCliente.nombre">
+        <input class="clasic_input max-width" type="text" *ngIf="editOptions" [(ngModel)]="nuevoCliente.nombre">
+      </div>
+      <div class="product-detalle-column">
+        <span>Apellido</span>
+        <input class="clasic_input max-width" type="text"  *ngIf="newOptions" [(ngModel)]="nuevoCliente.apellido">
+        <input class="clasic_input max-width" type="text"  *ngIf="editOptions" [(ngModel)]="nuevoCliente.apellido">
+      </div>
+      <div class="product-detalle-column">
+        <span>Dni</span>
+        <input class="clasic_input max-width" type="text"  *ngIf="newOptions" [(ngModel)]="nuevoCliente.dni">
+        <input class="clasic_input max-width" type="text"  *ngIf="editOptions" [(ngModel)]="nuevoCliente.dni">
+      </div>
+      <div class="product-detalle-column">
+        <span>Telefono</span>
+        <input class="clasic_input max-width" type="text"  *ngIf="newOptions" [(ngModel)]="nuevoCliente.telefono">
+        <input class="clasic_input max-width" type="text"  *ngIf="editOptions" [(ngModel)]="nuevoCliente.telefono">
+      </div>
+      <div class="head-section">
+        <h3 class="list-title">Direccion</h3>
+      </div>
+      <div class="product-detalle-column">
+        <span>Calle</span>
+        <input class="clasic_input max-width" type="text" *ngIf="newOptions" [(ngModel)]="nuevoCliente.calle">
+        <input class="clasic_input max-width" type="text" *ngIf="editOptions" [(ngModel)]="nuevoCliente.calle">
+   
+      </div>
+      <div class="product-detalle-column">
+        <span>Numero</span>
+        <input class="clasic_input max-width" type="text"  *ngIf="newOptions" [(ngModel)]="nuevoCliente.numeracion">
+        <input class="clasic_input max-width" type="text"  *ngIf="editOptions" [(ngModel)]="nuevoCliente.numeracion">
+      </div>
+      <div class="product-detalle-column">
+        <span>Locallidad</span>
+        <input class="clasic_input max-width" type="text"  *ngIf="newOptions" [(ngModel)]="nuevoCliente.numeracion">
+        <input class="clasic_input max-width" type="text"  *ngIf="editOptions" [(ngModel)]="nuevoCliente.numeracion">
+      </div>
+
+      <div class="product-detalle-column">
+        <span>Zona</span>
+        <select class="clasic_input max-width" >
+          <option placeholder="Zona"   *ngFor="let zona of zones" [value]="zona.numeroZona">
+            {{zona.numeroZona}} - {{ zona.descripcion }}</option>
+        </select>
+      </div>
+      
+      
+      <div class="product-detalle-fila button-div">
+          
+          <button class="special_button button-div-child"  *ngIf="newOptions" (click)="crearCliete()">Agregar</button>
+          <button class="special_button button-div-child"  *ngIf="editOptions" (click)="editarCliente()">Guardar</button>
+          <button class="special_button button-div-child" (click)="closeMenu()">Cancelar</button>
+          
+      </div>
+          
   </div>
+
+    
+    
