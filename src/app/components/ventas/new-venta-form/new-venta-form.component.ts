@@ -4,6 +4,7 @@ import { Toast, ToastrService } from 'ngx-toastr';
 import { Cliente } from 'src/app/models/cliente.model';
 import { Cuota } from 'src/app/models/cuota.model';
 import { Empleado } from 'src/app/models/empleado';
+import { ProductListItem } from 'src/app/models/producListItem';
 import { Product } from 'src/app/models/product.model';
 import { ClientService } from 'src/app/services/client.service';
 import { CuotaService } from 'src/app/services/cuota.service';
@@ -16,15 +17,14 @@ import { VendedorService } from 'src/app/services/vendedor.service';
   styleUrls: ['./new-venta-form.component.scss'],
 })
 export class NewVentaFormComponent  implements OnInit {
+
+
+
+
 finalizarVenta() {
 throw new Error('Method not implemented.');
 }
 
-
-  
-habilitarMenuProductos() {
-throw new Error('Method not implemented.');
-}
 
   opcionCuotas: number[] = [1,2,3,4,5,6,7,8,9,10,12, 18, 24];
 
@@ -36,13 +36,19 @@ throw new Error('Method not implemented.');
 
   cuotas: Cuota[] = [];
 
-  productsSelected :  Product[] = [];
+  productsDisponibles ?:  ProductListItem[];
+
+  productsFiltrados ?:  ProductListItem[];
+
+  filtroProducto ?: string;
 
   vendedores : Empleado[] = [];
 
   cantidadCuotas : number = 0;
 
   totalVenta : number = 1000000;
+
+  menuProductos ?: boolean;
 
   selectedClient : Cliente ={
     codigo: 0,
@@ -69,8 +75,9 @@ throw new Error('Method not implemented.');
   ngOnInit() {
     this.clients = this.clientService.getAll();
     this.vendedores = this.vendedorService.getAll();
-    this.productService.getProducts().subscribe(products => {
-      this.products = products;
+    this.productService.getListProductos().subscribe(
+      products => {
+      this.productsDisponibles = products;
     });
   }
 
@@ -80,6 +87,11 @@ throw new Error('Method not implemented.');
 
   onVendorChange(){
 
+  }
+
+  habilitarMenuProductos() {
+    this.menuProductos = true;
+    this.productsFiltrados = this.productsDisponibles;
   }
 
 
@@ -106,6 +118,25 @@ throw new Error('Method not implemented.');
   onDateChangeCuota(event: MatDatepickerInputEvent<Date>, cuota : Cuota) {
     if(event.value != null ) cuota.fechaPago = event.value;
     console.log('Fecha seleccionada:', this.fechaVenta);
+  }
+
+  agregarProducto(productSelected: ProductListItem) {
+    productSelected.seleccionado = true;
+    this.productService.getProductById(productSelected.codigo).subscribe(
+      product => this.products.push(product)
+    )
+  }
+
+  filtroProductoChange() {
+    this.productsFiltrados = this.productsDisponibles?.filter(
+      product => {
+        if(this.filtroProducto != null) {
+          return product.descripcion.includes(this.filtroProducto)}
+        else{
+          return this.productsDisponibles;
+        }}
+
+    );
   }
 
 }

@@ -15,9 +15,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CustomerListComponent {
 
-
-
-
   clientes!: Cliente[];
   nuevoCliente : Cliente = {
     codigo: 0,
@@ -33,22 +30,16 @@ export class CustomerListComponent {
 
   currentCliente !: Cliente; 
 
-  filtro: string = '';
-  zones!: Zone[];
+  filtroDni ?: number;
+  filtroCodigo ?: string;
+  filtroNombre ?: string;
+  filtroZona ?: string;
+
+  zones !: Zone[];
   currentPage : string = "1";
   paginas : number []  = [1,2,3,4,5,6,7,8,9,10];
 
-  clienteFiltro: Cliente = {
-    codigo: 0,
-    nombre: '',
-    apellido: '',
-    dni: '',
-    zona: 0,
-    calle: '',
-    numeracion: '',
-    localidad: '',
-    telefono: ''
-  };
+  clienteFiltro ?: Cliente;
 
   newOptions : boolean = false;
 
