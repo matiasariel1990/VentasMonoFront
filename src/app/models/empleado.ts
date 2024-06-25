@@ -2,6 +2,7 @@ export interface Empleado {
     id: number;
     nombre: string;
     apellido: string;
-    tipo: number;
+    tipoEmpleado: number;
     dni : number;
+    telefono : number;
   }

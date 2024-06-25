@@ -9,7 +9,7 @@ import { Product } from 'src/app/models/product.model';
 import { ClientService } from 'src/app/services/client.service';
 import { CuotaService } from 'src/app/services/cuota.service';
 import { ProductService } from 'src/app/services/product.service';
-import { VendedorService } from 'src/app/services/vendedor.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
   selector: 'app-new-venta-form',
@@ -67,14 +67,16 @@ throw new Error('Method not implemented.');
   constructor(private cuotaService: CuotaService,
     private productService: ProductService,
     private clientService: ClientService,
-    private vendedorService: VendedorService,
+    private employeeService: EmployeeService,
     private toastr: ToastrService
   ) {
   }
 
   ngOnInit() {
     this.clients = this.clientService.getAll();
-    this.vendedores = this.vendedorService.getAll();
+    this.employeeService.getAllEmployees().subscribe(
+      empleados => { this.vendedores = empleados }
+    );
     this.productService.getListProductos().subscribe(
       products => {
       this.productsDisponibles = products;

@@ -75,7 +75,6 @@ export class ZoneService {
   }
 
   create(newZone : Zone ): Observable<Zone>{
-    const url = `${this.baseUrl}`;
         const httpOptions = {
           headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
           observe: 'response' as 'body',

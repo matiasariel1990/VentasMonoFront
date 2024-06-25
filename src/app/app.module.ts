@@ -23,6 +23,7 @@ import { CustomerListComponent } from './components/customer/customer-list/custo
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { EmployeesComponent } from './components/employees/employees.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     NewVentaFormComponent,
     ZoneListComponent,
     CustomerListComponent,
-    
+    EmployeesComponent
   ],
   imports: [
     BrowserModule,

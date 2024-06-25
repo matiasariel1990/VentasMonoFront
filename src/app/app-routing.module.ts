@@ -10,9 +10,11 @@ import { ProductComponent } from './components/product/product/product.component
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { NewVentaFormComponent } from './components/ventas/new-venta-form/new-venta-form.component';
 import { ZoneListComponent } from './components/zone-list/zone-list.component';
+import { EmployeesComponent } from './components/employees/employees.component';
 
 const routes: Routes = [
   { path: 'customers', component: CustomerListComponent }, 
+  { path: 'employees',component: EmployeesComponent},
   { path: 'products', component: ProductListComponent },
   { path: 'newVenta', component: NewVentaFormComponent },
   { path: 'zones', component: ZoneListComponent }

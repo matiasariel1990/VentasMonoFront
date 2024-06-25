@@ -1,0 +1,69 @@
+<div class="general-view">
+
+
+  <div class="contedor-principal-card card--elevated">
+    <div class="head-section">
+        <h3 class="list-title">Empleados</h3>
+        <button class="special_button"(click)="newEmployeMenu()" *ngIf="!newOptions">Nuevo Empleado</button>
+    </div>
+
+    <div *ngFor="let employee of employees" class="item-generic" (click)="viewDeails(employee)">
+        <div class="product-item-description">
+            <span class="item-generic-description">{{ employee.apellido}}, {{employee.nombre }}</span>
+            <span class="item-generic-description-code">{{  employee.id }} - Dni: {{employee.dni}}</span>
+        </div>
+        <div class="product-item-description">
+          <span class="item-generic-description"> {{ obtenerTipoEmpleado(employee.tipoEmpleado) }} </span>
+        </div>
+    </div>
+  </div>
+    
+<div class="second-view" *ngIf="menuHabilitado()">
+
+  <div class="contenedor-secundario card--elevated">
+    
+    <div class="head-section">
+        <h3 class="list-title"  *ngIf="newOptions">Nuevo Empleado</h3>
+        <h3 class="list-title"  *ngIf="editOptions">Editar Empleado</h3>
+    </div>
+    
+    <div class="product-detalle-column">
+      <span *ngIf="editOptions">Codigo {{ empleadoEdit.id }}</span>
+    </div>
+    <div class="product-detalle-column">
+      <span>Nombre</span>
+      <input class="clasic_input max-width" type="text" *ngIf="newOptions" [(ngModel)]="nuevoEmpleado.nombre">
+      <input class="clasic_input max-width" type="text" *ngIf="editOptions" [(ngModel)]="empleadoEdit.nombre">
+    </div>
+    <div class="product-detalle-column">
+      <span>Apellido</span>
+      <input class="clasic_input max-width" type="text"  *ngIf="newOptions" [(ngModel)]="nuevoEmpleado.apellido">
+      <input class="clasic_input max-width" type="text"  *ngIf="editOptions" [(ngModel)]="empleadoEdit.apellido">
+    </div>
+    <div class="product-detalle-column">
+      <span>Dni</span>
+      <input class="clasic_input max-width" type="text"  *ngIf="newOptions" [(ngModel)]="nuevoEmpleado.dni">
+      <input class="clasic_input max-width" type="text"  *ngIf="editOptions" [(ngModel)]="empleadoEdit.dni">
+    </div>
+    <div class="product-detalle-column">
+      <span>Telefono</span>
+      <input class="clasic_input max-width" type="text"  *ngIf="newOptions" [(ngModel)]="nuevoEmpleado.telefono">
+      <input class="clasic_input max-width" type="text"  *ngIf="editOptions" [(ngModel)]="empleadoEdit.telefono">
+    </div>
+    <div class="product-detalle-column">
+      <span>Tipo</span>
+      <select class="clasic_input max-width" [(ngModel)]="opcionSeleccionado"  [value]="selectedTipo">
+        <option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</option>
+      </select>
+    </div>
+    
+    
+    <div class="product-detalle-fila button-div">
+        
+        <button class="special_button button-div-child"  *ngIf="newOptions" (click)="crearEmpleado()">Agregar</button>
+        <button class="special_button button-div-child"  *ngIf="editOptions" (click)="editarEmpleado()">Guardar</button>
+        <button class="special_button button-div-child" (click)="closeMenu()">Cancelar</button>
+        
+    </div>
+        
+</div>

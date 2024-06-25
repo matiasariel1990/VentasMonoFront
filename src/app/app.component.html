@@ -274,12 +274,12 @@
 
 
         <a class="side__link" routerLink="">Inicio</a>
-        <a class="side__link" routerLink="newVenta">Nueva Venta</a>
-        <a class="side__link" routerLink="products">Productos</a>
+        <a class="side__link" routerLink="newVenta" (click)="cerrarMenu()" >Nueva Venta</a>
+        <a class="side__link" routerLink="products" (click)="cerrarMenu()" >Productos</a>
         <a class="side__link" href="customers" (click)="cerrarMenu()">Clientes</a>
-        <a class="side__link" routerLink="customersDetails">Vendedores</a>
-        <a class="side__link" href="zones">Zonas</a>
-        <a class="side__link" routerLink="#">Informes</a>
+        <a class="side__link" routerLink="employees" (click)="cerrarMenu()">Empleados</a>
+        <a class="side__link" href="zones" (click)="cerrarMenu()" >Zonas</a>
+        <a class="side__link" routerLink="#" (click)="cerrarMenu()" >Informes</a>
         <a class="side__link" (click)="cerrarMenu()">Cerrar</a>
       </div>
 
